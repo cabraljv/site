@@ -1,7 +1,7 @@
 {
   "name": "site",
   "version": "0.1.0",
-  "homepage": "http://jogosinternos.github.io",
+  "homepage": "http://unkn0wnNTC.github.io/jogosinternos",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.1.1",
