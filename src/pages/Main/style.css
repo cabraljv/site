@@ -1,0 +1,194 @@
+header {
+    background: #000;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+
+.slideshow {
+    opacity: 0.3;
+    z-index: 1;
+    position: static;
+    width: 100%;
+    height: 100%;
+}
+
+header .logo {
+    width: 35%;
+    margin-top: 1%;
+    position: absolute;
+    z-index: 5;
+}
+
+h2 {
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-transform: uppercase;
+    color: rgb(17, 17, 17);
+    font-size: 3em;
+}
+
+#container {}
+.partidas *{
+    transition: all 0.2s ease-in;
+}
+.partidas {
+    border-bottom: 1px solid #ccc;
+    margin-top: 40px;
+    min-height: 1100px;
+    
+}
+
+.partidas div {
+    display: inline-block;
+    padding: 20px 50px;
+    align-content: center;
+}
+
+.partidas div:hover {
+    transform: scale(1.2);
+}
+
+.partidas div:hover img {
+    filter: drop-shadow( 3px 3px 4px rgba(0, 0, 0, .7));
+}
+
+.partidas div h3 {
+    color: rgb(19, 19, 19);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2em;
+    text-align: center;
+}
+
+.partidas img {
+    width: 230px;
+    height: 230px;
+}
+
+.hide {
+    animation: slide-out 1s forwards;
+    position: absolute;
+    bottom: -75em;
+}
+
+.show {
+    animation: slide-in 1s forwards;
+    position: absolute;
+    bottom: -150em;
+}
+
+.partidas>section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 10em;
+}
+
+@keyframes msg-in {
+    100% {
+        margin-top: 10em
+    }
+}
+
+@keyframes slide-in {
+    100% {
+        bottom: -75em
+    }
+}
+
+@keyframes slide-out {
+    100% {
+        bottom: -150em
+    }
+}
+@keyframes slidenav-in {
+    0% {
+        top: -50em;
+    }
+    100% {
+        top: 0em;
+    }
+}
+
+@keyframes slidenav-out {
+    100% {
+        top: -50em
+    }
+}
+nav{
+    
+    background: #fff;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    z-index: 10;
+}
+.showNav{
+    position: fixed;
+    animation: slidenav-in 1s forwards;
+    box-shadow: 0px 5px 40px 2px rgba(0, 0, 0, .4);
+    
+}
+.hideNav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    animation: slidenav-out 1s forwards;
+}
+
+nav ul {
+    margin-right: 10px;
+
+}
+nav img{
+    height: 65px;
+    justify-content: flex-start;
+    margin-top: 7px;
+    margin-left: 20px;
+    
+}
+
+nav ul li {
+    display: inline-block;
+    padding: 29px 0px;
+    text-decoration: none;
+    
+}
+
+nav ul li .linkstyle{
+    
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    margin: 0;
+    padding: 29px;
+    
+    
+}
+
+nav ul li#ativo {
+    border-bottom: 7px solid rgb(33, 228, 82);
+}
+.jogosModal{
+    background: rgb(33, 228, 82);
+    width: 100%;
+    height: 100%;
+}
+.iconeFechar{
+    margin: 50px;
+    
+}
+.iconeFechar img{
+    padding: 10px;
+    width: 65px;
+}
+#equipes{
+    border-bottom: 1px solid #ccc;
+}
+#tabela{
+    height: 37em;
+    border-bottom: 1px solid #ccc;
+}
