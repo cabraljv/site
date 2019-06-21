@@ -18,12 +18,12 @@ import gincana from '../../assets/gincana.svg'
 import peteca from '../../assets/peteca.svg'
 import logoji from '../../assets/logoJogos.svg'
 import Slide from '@material-ui/core/Slide';
+import vermelho from '../../assets/vermelho.svg'
 import Tabela from '../../components/Tabela'
 import './style.css'
 import BackgroundSlideshow from 'react-background-slideshow'
-import ImageGallery from 'react-image-gallery';
-
-
+import Navbar from 'react-bootstrap/Navbar'
+import ResponsiveMenu from 'react-responsive-navbar';
 
 export default class Main extends Component {
     state = {
@@ -34,6 +34,7 @@ export default class Main extends Component {
         tabela: '',
         galeria: '',
         open: false,
+        timesAnimation: 'hide',
     }
 
     handleScroll() {
@@ -60,15 +61,25 @@ export default class Main extends Component {
                 classNamenav: 'hideNav'
             })
         }
-        if (document.documentElement.scrollTop > 1600) {
+        if(document.documentElement.scrollTop > 1300){
+            this.setState({
+                timesAnimation: 'show',
+            })
+        }else{
+            this.setState({
+                timesAnimation: 'hide',
+            })
+        }
+        if (document.documentElement.scrollTop >= 1500) {
 
             this.setState({
                 times: 'ativo',
                 jogos: '',
                 tabela: '',
+                
             })
         }
-        if (document.documentElement.scrollTop > 2450) {
+        if (document.documentElement.scrollTop >= 2000) {
 
             this.setState({
                 times: '',
@@ -95,7 +106,7 @@ export default class Main extends Component {
 
     }
     Transition = React.forwardRef(function Transition(props, ref) {
-        return <Slide direction="right" ref={ref} {...props} timeout={{ enter: 800 }} />;
+        return <Slide direction="right" ref={ref} {...props} timeout={{ enter: 800, exit: 800 }} />;
     });
     render() {
         const images = [
@@ -116,6 +127,7 @@ export default class Main extends Component {
         return (
             <div>
                 <nav className={this.state.classNamenav}>
+                    
                     <img src={logoji} />
                     <ul>
                         <li id={this.state.jogos}><AnchorLink offset='100' href='#partidas' className='linkstyle' >Partidas</AnchorLink></li>
@@ -124,17 +136,19 @@ export default class Main extends Component {
                         <li id={this.state.galeria}><AnchorLink offset='100' href='#galeria' className='linkstyle' >Galeria</AnchorLink></li>
                     </ul>
                 </nav>
+                
                 <header>
+                    <img src={logobg} className='logo' />
                     <div className='slideshow' >
                         <BackgroundSlideshow images={[image1, image2, image3]} />
                     </div >
-                    <img src={logobg} className='logo' />
+                    
                 </header>
                 <section id='container' >
                     <section id='partidas' className='partidas' >
                         <h2 > Partidas por modalidade </h2>
                         <section className={this.state.className} >
-                            < div id='volei' onClick={()=>{
+                            <div id='volei' onClick={()=>{
                                 this.setState({jogo: 'volei'})
                                 this.handleClickOpen()
                                 }} >
@@ -193,20 +207,36 @@ export default class Main extends Component {
 
                         </section>
                     </section>
-                    <Dialog fullScreen open={this.state.open} onClose={this.handleClose} TransitionComponent={this.Transition}>
-                        <div className='jogosModal'>
+                    
+                    <Dialog fullScreen open={this.state.open} onClose={this.handleClose} TransitionComponent={this.Transition} className='tabelasJogos'>
+                            <div className='jogosModal'>
                             <div className='iconeFechar'>
                                 <Button  onClick={this.handleClose}><img src={CloseIcon} alt='X'/></Button>
-                                <ModalJogos jogo={this.state.jogo}></ModalJogos>
+                                
                             </div>
-                        </div>
+                            <ModalJogos jogo={this.state.jogo}></ModalJogos>
+                            </div>
                     </Dialog>
+                    
                     <section id='equipes'>
                         <h2 > Equipes participantes </h2>
-                        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-                        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-                        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-                        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                        <section className={this.state.timesAnimation}>
+                            <div>
+                                <img src={vermelho}/>
+                            </div>
+                            <div>
+                                <img src={logoji}/>
+
+                            </div>
+                            <div>
+                                <img src={logoji}/>
+                            </div>
+                            <div>
+                                <img src={logoji}/>
+                            </div>
+                        
+                        </section>
+                        
                     </section>
                     <section id='tabela'>
                         <h2 >Tabela</h2>
@@ -218,7 +248,9 @@ export default class Main extends Component {
                         
                     </section>
                 </ section >
-
+                <footer>
+                    <h3>Desenvolvido por <a href='https://github.com/unkn0wnNTC'>João Victor Cabral</a></h3>
+                </footer>
             </div>
         );
     }

@@ -13,9 +13,11 @@ export default class JogosModal extends Component {
     head: {
       backgroundColor: theme.palette.common.black,
       color: theme.palette.common.white,
+      textAlign: 'center',
     },
     body: {
       fontSize: 14,
+      textAlign: 'center',
     },
   }))(TableCell);
   

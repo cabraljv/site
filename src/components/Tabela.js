@@ -6,6 +6,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import logo from '../assets/logoJogos.svg'
+import vermelho from '../assets/vermelho.svg'
 import Paper from '@material-ui/core/Paper';
 import './tabela.css'
 
@@ -31,22 +32,22 @@ export default class Tabela extends Component {
         },
       }))(TableRow);
       
-      createData = (classi, equipe, pontuacao)=> {
-        return { classi, equipe, pontuacao };
+      createData = (classi, equipe, pontuacao,logo)=> {
+        return { classi, equipe, pontuacao, logo };
       }
       
      rows = [
-        this.createData('1º', 'Vermelho', '100'),
-        this.createData('2º', 'Azul', '97'),
-        this.createData('3º', 'Preto', '66'),
-        this.createData('4º', 'Branco', '37'),
+        this.createData('1º', 'Vermelho', '100',vermelho),
+        this.createData('2º', 'Azul', '97',logo),
+        this.createData('3º', 'Preto', '66',logo),
+        this.createData('4º', 'Branco', '37',logo),
       ];
   render() {
     return(
 <div id='container'>
         
         <section>
-        <Paper className='root'>
+        <Paper className='root-2'>
           <Table className='table'>
             <TableHead>
               <TableRow>
@@ -62,7 +63,7 @@ export default class Tabela extends Component {
                     {row.classi}
                   </this.StyledTableCell>
                   <this.StyledTableCell align="right">
-                      <img src={logo} className='logoTime'/>
+                      <img src={row.logo} className='logoTime'/>
                     <p>{row.equipe}</p>
                   </this.StyledTableCell>
                   <this.StyledTableCell align="right">{row.pontuacao}</this.StyledTableCell>
