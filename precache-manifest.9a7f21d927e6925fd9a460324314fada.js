@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2bcf7a5502c503f4dd33467364a4fab0",
+    "revision": "ac3a78abe84e2e0b6ee2e72e921a9026",
     "url": "/site/index.html"
   },
   {
-    "revision": "cbbe63cfa049b5f16c8c",
-    "url": "/site/static/css/main.94c30330.chunk.css"
+    "revision": "c0e4a0379c3e5b6708d0",
+    "url": "/site/static/css/main.2f879c8b.chunk.css"
   },
   {
-    "revision": "d393c19acf0e347bd2d7",
-    "url": "/site/static/js/2.b957372d.chunk.js"
+    "revision": "d7208da4be9f9b3eeea6",
+    "url": "/site/static/js/2.c8d0a577.chunk.js"
   },
   {
-    "revision": "cbbe63cfa049b5f16c8c",
-    "url": "/site/static/js/main.173754e6.chunk.js"
+    "revision": "c0e4a0379c3e5b6708d0",
+    "url": "/site/static/js/main.b6ecb569.chunk.js"
   },
   {
     "revision": "14c83684653b1b55fe6d",
@@ -32,12 +32,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/site/static/media/3.663fcaf7.jpg"
   },
   {
+    "revision": "c3079e71002274f7f30e22b703f8488c",
+    "url": "/site/static/media/azul.c3079e71.png"
+  },
+  {
     "revision": "0535c23e13109694800a998ecf0dd635",
     "url": "/site/static/media/bandeira.0535c23e.svg"
   },
   {
     "revision": "cba8043a01489084898f78ea25b42c5a",
     "url": "/site/static/media/bolafut.cba8043a.svg"
+  },
+  {
+    "revision": "a3631c5535d984eefcd72982489b580b",
+    "url": "/site/static/media/branco.a3631c55.png"
   },
   {
     "revision": "2b2d0501bf871c36fc6f5652ed46edea",
@@ -64,12 +72,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/site/static/media/peteca.45503df6.svg"
   },
   {
+    "revision": "70b73e381e739db86f66a3a53bd0aca8",
+    "url": "/site/static/media/preto.70b73e38.png"
+  },
+  {
     "revision": "4e1e1306ca0a3a355fa968331c3ae509",
     "url": "/site/static/media/queimada.4e1e1306.svg"
   },
   {
-    "revision": "a6a6ce6edd62e1a7577df28af257da49",
-    "url": "/site/static/media/vermelho.a6a6ce6e.svg"
+    "revision": "eda19dbc4580ce025556ed323b8f7c01",
+    "url": "/site/static/media/vermelho.eda19dbc.png"
   },
   {
     "revision": "19d9ddf1abf67354c0ddf33b2644b4d7",
