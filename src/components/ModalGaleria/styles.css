@@ -1,0 +1,13 @@
+#fotos{
+    background: rgb(33, 228, 82);
+}
+#fotos h2{
+    font-size: 3em;
+    color: #fff;
+    display: block;
+
+}
+#fotos section{
+    padding: 50px;
+    overflow: hidden;
+}

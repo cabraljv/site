@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
-import AnchorLink from 'react-anchor-link-smooth-scroll'
 import Dialog from '@material-ui/core/Dialog';
-import logobg from '../../assets/logofundo.svg'
-import image1 from '../../assets/1.jpg'
+import Header from '../../components/Header'
 import Button from '@material-ui/core/Button';
-import image2 from '../../assets/2.jpg'
-import image3 from '../../assets/3.jpg'
 import volei from '../../assets/volei.svg'
 import futebol from '../../assets/bolafut.svg'
 import handball from '../../assets/handball.svg'
@@ -16,29 +12,35 @@ import bandeira from '../../assets/bandeira.svg'
 import CloseIcon from '../../assets/closeicon.svg'
 import gincana from '../../assets/gincana.svg'
 import peteca from '../../assets/peteca.svg'
-import logoji from '../../assets/logoJogos.svg'
 import Slide from '@material-ui/core/Slide';
-import vermelho from '../../assets/vermelho.svg'
+import vermelho from '../../assets/vermelho.png'
+import azul from '../../assets/azul.png'
+import branco from '../../assets/branco.png'
+import preto from '../../assets/preto.png'
 import Tabela from '../../components/Tabela'
 import './style.css'
-import BackgroundSlideshow from 'react-background-slideshow'
-import Navbar from 'react-bootstrap/Navbar'
-import ResponsiveMenu from 'react-responsive-navbar';
+import NavBar from '../../components/NavBar';
+import { isMobile } from 'react-device-detect';
+import ModalGaleria from '../../components/ModalGaleria'
 
 export default class Main extends Component {
     state = {
         className: 'hide',
         classNamenav: 'hideNav',
-        jogos: '',
-        times: '',
-        tabela: '',
-        galeria: '',
+        navbarItens: {
+            jogos: 'ativo',
+            times: '',
+            tabela: '',
+            galeria: '',
+        },
         open: false,
+        showImages: false,
         timesAnimation: 'hide',
+        ano: 2016,
     }
 
     handleScroll() {
-        console.log(document.documentElement.scrollTop)
+
         if (document.documentElement.scrollTop > 310) {
 
             this.setState({
@@ -53,19 +55,23 @@ export default class Main extends Component {
 
             this.setState({
                 classNamenav: 'showNav',
-                jogos: 'ativo',
-                times: '',
+                navbarItens: {
+                    ...this.state.navbarItens,
+                    jogos: 'ativo',
+                    times: '',
+                }
+
             })
         } else {
             this.setState({
                 classNamenav: 'hideNav'
             })
         }
-        if(document.documentElement.scrollTop > 1300){
+        if (document.documentElement.scrollTop > 1300) {
             this.setState({
                 timesAnimation: 'show',
             })
-        }else{
+        } else {
             this.setState({
                 timesAnimation: 'hide',
             })
@@ -73,19 +79,26 @@ export default class Main extends Component {
         if (document.documentElement.scrollTop >= 1500) {
 
             this.setState({
-                times: 'ativo',
-                jogos: '',
-                tabela: '',
-                
+                navbarItens: {
+                    ...this.state.navbarItens,
+                    jogos: '',
+                    times: 'ativo',
+                    tabela: '',
+                }
+
             })
         }
         if (document.documentElement.scrollTop >= 2000) {
 
             this.setState({
-                times: '',
-                jogos: '',
-                tabela: 'ativo'
+                navbarItens: {
+                    ...this.state.navbarItens,
+                    jogos: '',
+                    times: '',
+                    tabela: 'ativo',
+                }
             })
+            //console.log(this.state.navbarItens)
         }
 
     }
@@ -98,145 +111,121 @@ export default class Main extends Component {
     handleClose = () => {
         this.setState({
             open: false,
+            showImages: false,
         });
     }
 
     componentDidMount() {
+        if (isMobile) {
+            this.props.history.push('/mobile')
+        }
         window.onscroll = () => this.handleScroll();
-
+        //this.loadImages();
     }
     Transition = React.forwardRef(function Transition(props, ref) {
         return <Slide direction="right" ref={ref} {...props} timeout={{ enter: 800, exit: 800 }} />;
     });
     render() {
-        const images = [
-            {
-              original: image1,
-              thumbnail: image1,
-            },
-            {
-                original: image2,
-                thumbnail: image2,
-            },
-            {
-                original: image3,
-                thumbnail: image3,
-            }
-          ]
-        
+        const { navbarItens } = this.state
+
         return (
             <div>
-                <nav className={this.state.classNamenav}>
-                    
-                    <img src={logoji} />
-                    <ul>
-                        <li id={this.state.jogos}><AnchorLink offset='100' href='#partidas' className='linkstyle' >Partidas</AnchorLink></li>
-                        <li id={this.state.times}><AnchorLink offset='100' href='#equipes' className='linkstyle' >Equipes</AnchorLink></li>
-                        <li id={this.state.tabela}><AnchorLink offset='100' href='#tabela' className='linkstyle' >Tabela</AnchorLink></li>
-                        <li id={this.state.galeria}><AnchorLink offset='100' href='#galeria' className='linkstyle' >Galeria</AnchorLink></li>
-                    </ul>
-                </nav>
-                
-                <header>
-                    <img src={logobg} className='logo' />
-                    <div className='slideshow' >
-                        <BackgroundSlideshow images={[image1, image2, image3]} />
-                    </div >
-                    
-                </header>
+
+                <NavBar navbarItens={navbarItens} animation={this.state.classNamenav} />
+                <Header />
                 <section id='container' >
                     <section id='partidas' className='partidas' >
-                        <h2 > Partidas por modalidade </h2>
+                        <h2 >Partidas por modalidade</h2>
                         <section className={this.state.className} >
-                            <div id='volei' onClick={()=>{
-                                this.setState({jogo: 'volei'})
+                            <div id='volei' onClick={() => {
+                                this.setState({ jogo: 'volei' })
                                 this.handleClickOpen()
-                                }} >
-                                <img src={volei} />
-                                <h3 >Vôlei</h3>
+                            }} >
+                                <img src={volei} alt='Vôlei' />
+                                <h3 >Voleibol</h3>
                             </div >
-                            < div id='futebol' onClick={()=>{
-                                this.setState({jogo: 'fut'})
+                            < div id='futebol' onClick={() => {
+                                this.setState({ jogo: 'fut' })
                                 this.handleClickOpen()
-                                }} >
-                                <img src={futebol} />
-                                <h3 >Futebol</h3>
+                            }} >
+                                <img src={futebol} alt='Futebol' />
+                                <h3 >Futsal</h3>
                             </div >
-                            < div id='handball' onClick={()=>{
-                                this.setState({jogo: 'handball'})
+                            < div id='handball' onClick={() => {
+                                this.setState({ jogo: 'handball' })
                                 this.handleClickOpen()
-                                }} >
-                                <img src={handball} />
-                                <h3 >Handball</h3>
+                            }} >
+                                <img src={handball} alt='Handball' />
+                                <h3 >Handebol</h3>
                             </div >
-                            < div id='queimada' onClick={()=>{
-                                this.setState({jogo: 'queimada'})
+                            < div id='queimada' onClick={() => {
+                                this.setState({ jogo: 'queimada' })
                                 this.handleClickOpen()
-                                }} >
-                                <img src={queimada} />
+                            }} >
+                                <img src={queimada} alt='Queimada' />
                                 <h3 >Queimada</h3>
                             </div >
-                            < div id='bandeira' onClick={()=>{
-                                this.setState({jogo: 'bandeira'})
+                            < div id='bandeira' onClick={() => {
+                                this.setState({ jogo: 'bandeira' })
                                 this.handleClickOpen()
-                                }} >
-                                <img src={bandeira} />
+                            }} >
+                                <img src={bandeira} alt='Pique Bandeira' />
                                 <h3 >Pique Bandeira</h3>
                             </div >
-                            < div id='peteca' onClick={()=>{
-                                this.setState({jogo: 'peteca'})
+                            < div id='peteca' onClick={() => {
+                                this.setState({ jogo: 'peteca' })
                                 this.handleClickOpen()
-                                }} >
-                                <img src={peteca} />
+                            }} >
+                                <img src={peteca} alt='Peteca' />
                                 <h3 >Peteca</h3>
                             </div >
-                            < div id='xadrez' onClick={()=>{
-                                this.setState({jogo: 'xadrez'})
+                            < div id='xadrez' onClick={() => {
+                                this.setState({ jogo: 'xadrez' })
                                 this.handleClickOpen()
-                                }} >
-                                <img src={xadrez} />
+                            }} >
+                                <img src={xadrez} alt='Xadrez' />
                                 <h3 >Xadrez</h3>
                             </div >
-                            < div id='gincana' onClick={()=>{
-                                this.setState({jogo: 'gincana'})
+                            < div id='gincana' onClick={() => {
+                                this.setState({ jogo: 'gincana' })
                                 this.handleClickOpen()
-                                }} >
-                                <img src={gincana} />
+                            }} >
+                                <img src={gincana} alt='Gincana' />
                                 <h3 >Gincana</h3>
                             </div >
 
                         </section>
                     </section>
-                    
+
                     <Dialog fullScreen open={this.state.open} onClose={this.handleClose} TransitionComponent={this.Transition} className='tabelasJogos'>
-                            <div className='jogosModal'>
+                        <div className='jogosModal'>
                             <div className='iconeFechar'>
-                                <Button  onClick={this.handleClose}><img src={CloseIcon} alt='X'/></Button>
-                                
+                                <Button onClick={this.handleClose}><img src={CloseIcon} alt='X' /></Button>
+
                             </div>
                             <ModalJogos jogo={this.state.jogo}></ModalJogos>
-                            </div>
+                        </div>
                     </Dialog>
-                    
+
                     <section id='equipes'>
                         <h2 > Equipes participantes </h2>
                         <section className={this.state.timesAnimation}>
                             <div>
-                                <img src={vermelho}/>
+                                <img src={vermelho} alt='Time Vermelho' />
                             </div>
                             <div>
-                                <img src={logoji}/>
+                                <img src={preto} alt='Time preto' />
 
                             </div>
                             <div>
-                                <img src={logoji}/>
+                                <img src={azul} alt='Time Azul' />
                             </div>
                             <div>
-                                <img src={logoji}/>
+                                <img src={branco} alt='Time Branco' />
                             </div>
-                        
+
                         </section>
-                        
+
                     </section>
                     <section id='tabela'>
                         <h2 >Tabela</h2>
@@ -244,8 +233,31 @@ export default class Main extends Component {
                     </section>
                     <section id='galeria'>
                         <h2 >Galeria de fotos</h2>
-                        
-                        
+                        <div>
+                            <section onClick={() => { this.setState({ showImages: true, ano: 2016 }) }}>
+                                <img src={require("../../assets/2016/6.jpg")} />
+                                <h3>2016</h3>
+                            </section >
+                            <section onClick={() => { this.setState({ showImages: true, ano: 2017 }) }}>
+                                <img src={require("../../assets/2017/13.JPG")} />
+                                <h3>2017</h3>
+                            </section>
+                            <section onClick={() => { this.setState({ showImages: true, ano: 2018 }) }}>
+                                <img src={require("../../assets/2016/3.jpg")} />
+                                <h3>2018</h3>
+                            </section>
+
+                        </div>
+                        <Dialog fullScreen open={this.state.showImages} onClose={this.handleClose} TransitionComponent={this.Transition}>
+                            <div className='imagensModal'>
+                                <div className='iconeFechar'>
+                                    <Button onClick={this.handleClose}><img src={CloseIcon} alt='X' /></Button>
+
+                                </div>
+                                <ModalGaleria ano={this.state.ano}></ModalGaleria>
+                            </div>
+                        </Dialog>
+
                     </section>
                 </ section >
                 <footer>

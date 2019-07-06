@@ -1,0 +1,159 @@
+
+h2 {
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-transform: uppercase;
+    color: rgb(17, 17, 17);
+    font-size: 3em;
+}
+
+#container {
+    
+}
+.partidas *, #equipes *, #galeria *{
+    transition: all 0.2s ease-in;
+}
+.partidas, #equipes {
+    border-bottom: 1px solid #ccc;
+    margin: 0 auto;
+    margin-top: 40px;
+    max-width: 1100px;
+    
+    
+    
+    
+}
+
+.partidas div {
+    display: inline-block;
+    padding: 20px 50px;
+    align-content: center;
+}
+
+.partidas div:hover, #equipes div:hover {
+    transform: scale(1.2);
+}
+
+.partidas div:hover img {
+    filter: drop-shadow( 3px 3px 4px rgba(0, 0, 0, .7));
+}
+
+.partidas div h3 {
+    color: rgb(19, 19, 19);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2em;
+    text-align: center;
+}
+
+.partidas img {
+    width: 230px;
+    height: 230px;
+}
+
+
+
+.partidas>section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 3em;
+}
+
+
+
+
+
+
+.jogosModal{
+    background: rgb(33, 228, 82);
+    width: 100%;
+    height: 100%;
+    
+
+    
+}
+.iconeFechar{
+    width: 5%;
+    display: block;
+    
+}
+.iconeFechar img{
+    padding: 10px;
+    width: 65px;
+    
+}
+
+#tabela{
+    height: 37em;
+    border-bottom: 1px solid #ccc;
+}
+#equipes > section{
+    margin: 5em 0;
+}
+#equipes > section div{
+    display: inline-block;
+    margin: 2em;
+}
+#equipes h3{
+    color: rgb(19, 19, 19);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2em;
+    text-align: center;
+    padding-top: 1em;
+}
+#equipes img{
+    width: 15em;
+}
+footer{
+    margin-top: 5em;
+    height: 5em;
+    background: rgb(33, 228, 82);
+}
+footer h3{
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    text-align: center;
+    padding-top: 2em;
+}
+footer h3 a{
+    text-decoration: none;
+    color: #fff;
+}
+footer h3 a:hover{
+
+    color: #fff;
+}
+#galeria{
+    padding-top: 20px;
+}
+#galeria div section img{
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    position: relative;
+    top:0;
+    left: 0;
+}
+#galeria div section{
+    display: inline-block;
+    width: 300px;
+    height: 170px;
+    margin: 30px 30px;
+    position: relative;
+    background: #000;
+}
+#galeria div section:hover{
+    transform: scale(1.2);
+}
+#galeria div section h3{
+    color:#fff;
+    position: absolute;
+    font-size: 2em;
+    top: 80px;
+    left: 120px;
+    z-index: 10;
+    
+}
