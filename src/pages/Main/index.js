@@ -204,6 +204,7 @@ export default class Main extends Component {
 
                             </div>
                             <ModalJogos jogo={this.state.jogo}></ModalJogos>
+
                         </div>
                     </Dialog>
 

@@ -8,7 +8,7 @@ h2 {
 }
 
 #container {
-    
+    text-align: center;
 }
 .partidas *, #equipes *, #galeria *{
     transition: all 0.2s ease-in;
@@ -211,4 +211,7 @@ footer h3 a:hover{
     left: 120px;
     z-index: 10;
     
+}
+#tabelaJogos2{
+    background:  rgb(33, 228, 82);
 }
